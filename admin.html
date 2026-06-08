@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Velvet Vogue - Admin Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            background-color: #f4f6f9;
+            font-family: 'Segoe UI', sans-serif;
+        }
+        .sidebar {
+            background-color: #212529;
+            min-height: 100vh;
+            color: white;
+        }
+        .sidebar .nav-link {
+            color: #c2c7d0;
+            display: block;
+            padding: 12px 20px;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        .sidebar .nav-link.active, .sidebar .nav-link:hover {
+            background-color: #495057;
+            color: white;
+            border-radius: 4px;
+        }
+        .dashboard-card {
+            border: none;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+        /* Custom styling for inputs to integrate well with icons */
+        .input-group-text {
+            background-color: #f8f9fa;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container-fluid">
+        <div class="row">
+            
+            <nav class="col-md-3 col-lg-2 d-md-block sidebar padding-0 p-3">
+                <h4 class="text-center py-3 fw-bold border-bottom border-secondary">
+                    <i class="fas fa-user-shield me-2"></i>VV Admin
+                </h4>
+                <ul class="nav flex-column mt-4">
+                    <li class="nav-item mb-2">
+                        <a class="nav-link active" href="admin.html">
+                            <i class="fas fa-plus-circle me-2"></i>Add Product
+                        </a>
+                    </li>
+                    <li class="nav-item mb-2">
+                        <a class="nav-link" href="#" onclick="alert('Feature coming soon: View Orders')">
+                            <i class="fas fa-shopping-bag me-2"></i>Orders
+                        </a>
+                    </li>
+                    <li class="nav-item mb-2">
+                        <a class="nav-link" href="#" onclick="alert('Feature coming soon: Customers List')">
+                            <i class="fas fa-users me-2"></i>Customers
+                        </a>
+                    </li>
+                    <li class="nav-item mb-2">
+                        <a class="nav-link text-info" href="home.html">
+                            <i class="fas fa-globe me-2"></i>View Website
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-danger mt-5" href="account.html">
+                            <i class="fas fa-sign-out-alt me-2"></i>Logout
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 py-5">
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-4 border-bottom">
+                    <h1 class="h2 fw-bold"><i class="fas fa-tasks me-2"></i>Product Management</h1>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-6 mb-4">
+                        <div class="card p-4 dashboard-card bg-white">
+                            <h5 class="card-title fw-bold mb-4">
+                                <i class="fas fa-edit text-muted me-2"></i>Add New Apparel Item
+                            </h5>
+                            
+                            <form id="addProductForm" onsubmit="addNewProduct(event)">
+                                <div class="mb-3">
+                                    <label for="prodName" class="form-label">Product Title</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="fas fa-tag text-muted"></i></span>
+                                        <input type="text" class="form-control" id="prodName" placeholder="e.g., Slim Fit Chino Trousers" required>
+                                    </div>
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="prodPrice" class="form-label">Price (LKR)</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text"><strong class="small">LKR</strong></span>
+                                            <input type="number" class="form-control" id="prodPrice" placeholder="4200" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="prodCategory" class="form-label">Category</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text"><i class="fas fa-list text-muted"></i></span>
+                                            <select class="form-select" id="prodCategory">
+                                                <option value="Casualwear">Casualwear</option>
+                                                <option value="Formal Wear">Formal Wear</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label d-block"><i class="fas fa-ruler me-1 text-muted"></i> Available Sizes</label>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="checkbox" id="sizeS" value="S" checked>
+                                        <label class="form-check-label" for="sizeS">S</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="checkbox" id="sizeM" value="M" checked>
+                                        <label class="form-check-label" for="sizeM">M</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="checkbox" id="sizeL" value="L">
+                                        <label class="form-check-label" for="sizeL">L</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="checkbox" id="sizeXL" value="XL">
+                                        <label class="form-check-label" for="sizeXL">XL</label>
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="prodImage" class="form-label">Product Image URL</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="fas fa-image text-muted"></i></span>
+                                        <input type="text" class="form-control" id="prodImage" value="https://via.placeholder.com/300x400" required>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-dark w-100 py-2 fw-bold">
+                                    <i class="fas fa-cloud-upload-alt me-1"></i> Upload Product
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="card p-4 dashboard-card bg-white">
+                            <h5 class="card-title fw-bold mb-4">
+                                <i class="fas fa-eye text-muted me-2"></i>Live Store Preview (Recent Additions)
+                            </h5>
+                            
+                            <div class="table-responsive">
+                                <table class="table align-middle">
+                                    <thead class="table-light">
+                                        <tr>
+                                            <th><i class="fas fa-image small me-1"></i>Image</th>
+                                            <th>Product Name</th>
+                                            <th>Category</th>
+                                            <th>Price</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="productTableBody">
+                                        <tr>
+                                            <td><img src="https://i.pinimg.com/1200x/3e/06/2f/3e062f7dc47dd39618eae0404fd14bc5.jpg" class="card-img-top product-img" alt="Casual Jacket"></td>
+                                            <td>Classic Casual Jacket</td>
+                                            <td><span class="badge bg-secondary">Casualwear</span></td>
+                                            <td class="fw-bold text-dark">LKR 4,500.00</td>
+                                        </tr>
+                                        <tr>
+                                            <td><img src="https://i.pinimg.com/736x/bc/41/81/bc4181ea9a80552b158b096cdb82d068.jpg" class="card-img-top product-img" alt="Formal Shirt"></td>
+                                            <td>Premium Formal Shirt</td>
+                                            <td><span class="badge bg-secondary">Formal Wear</span></td>
+                                            <td class="fw-bold text-dark">LKR 3,800.00</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <footer class="bg-dark text-white text-center py-4 mt-5">
+        <div class="container">
+            <p class="mb-1">&copy; 2026 Velvet Vogue Clothing Store. All Rights Reserved.</p>
+            <small class="text-secondary d-block">Student Name: [Your Name] | Student ID: [Your ID]</small>
+            <small class="text-secondary">Unit 13: Web Design & Development | Assignment 1</small>
+        </div>
+    </footer>
+
+    <script>
+        function addNewProduct(event) {
+            event.preventDefault();
+
+            // Getting form values
+            const name = document.getElementById('prodName').value;
+            const price = parseFloat(document.getElementById('prodPrice').value).toFixed(2);
+            const category = document.getElementById('prodCategory').value;
+            const imgUrl = document.getElementById('prodImage').value;
+
+            // Adding a new row dynamically to the live preview table
+            const tableBody = document.getElementById('productTableBody');
+            const newRow = document.createElement('tr');
+
+            newRow.innerHTML = `
+                <td><img src="${imgUrl}" class="rounded" style="width: 50px; height: 50px; object-fit: cover;" alt="New Product"></td>
+                <td class="fw-semibold text-success"><i class="fas fa-star me-1 small"></i>${name} (New)</td>
+                <td><span class="badge bg-success">${category}</span></td>
+                <td class="fw-bold text-success">LKR ${parseFloat(price).toLocaleString('en-US', {minimumFractionDigits: 2})}</td>
+            `;
+
+            // Inserting at the top of the table
+            tableBody.insertBefore(newRow, tableBody.firstChild);
+
+            // Notification for documentation testing
+            alert(`Success: "${name}" has been uploaded to the front-end catalog simulation!`);
+            
+            // Reset form
+            document.getElementById('addProductForm').reset();
+            document.getElementById('prodImage').value = "https://via.placeholder.com/300x400";
+        }
+    </script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

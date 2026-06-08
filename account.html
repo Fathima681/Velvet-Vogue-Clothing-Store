@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Velvet Vogue - Account Authentication</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', sans-serif;
+        }
+        .auth-card {
+            border: none;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            background: #ffffff;
+        }
+        .nav-tabs .nav-link {
+            color: #495057;
+            font-weight: 500;
+        }
+        .nav-tabs .nav-link.active {
+            color: #000000;
+            font-weight: bold;
+            border-bottom: 3px solid #000000;
+        }
+        /* Styling to add padding inside input groups for icons */
+        .input-group-text {
+            background-color: #f1f3f5;
+            border-right: none;
+        }
+        .form-control, .form-select {
+            border-left: none;
+        }
+        .form-control:focus, .form-select:focus {
+            border-color: #dee2e6;
+            box-shadow: none;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top mb-5">
+        <div class="container">
+            <a class="navbar-brand fw-bold fs-3" href="home.html">Velvet Vogue</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="home.html">
+                            <i class="fas fa-home me-1"></i> Home
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="shop.html">
+                            <i class="fas fa-store me-1"></i> Shop
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="cart.html">
+                            <i class="fas fa-shopping-cart me-1"></i> Cart <span class="badge bg-danger">0</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="account.html">
+                            <i class="fas fa-user me-1"></i> Account
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-warning" href="admin.html">
+                            <i class="fas fa-user-shield me-1"></i> Admin
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-5">
+                
+                <div class="card p-4 auth-card">
+                    
+                    <ul class="nav nav-tabs mb-4 justify-content-center" id="authTabs" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="login-tab" data-bs-toggle="tab" data-bs-target="#login-panel" type="button" role="tab">
+                                <i class="fas fa-sign-in-alt me-1"></i> Login
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="register-tab" data-bs-toggle="tab" data-bs-target="#register-panel" type="button" role="tab">
+                                <i class="fas fa-user-plus me-1"></i> Register
+                            </button>
+                        </li>
+                    </ul>
+
+                    <div class="tab-content" id="authTabsContent">
+                        
+                        <div class="tab-pane fade show active" id="login-panel" role="tabpanel">
+                            <form id="loginForm" onsubmit="handleLogin(event)">
+                                <div class="mb-3">
+                                    <label for="loginEmail" class="form-label">Email Address</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="fas fa-envelope text-muted"></i></span>
+                                        <input type="email" class="form-control" id="loginEmail" placeholder="name@example.com" required>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="loginPassword" class="form-label">Password</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="fas fa-lock text-muted"></i></span>
+                                        <input type="password" class="form-control" id="loginPassword" placeholder="Enter your password" required>
+                                    </div>
+                                </div>
+                                <div class="mb-3 form-check">
+                                    <input type="checkbox" class="form-check-input" id="rememberMe">
+                                    <label class="form-check-label text-muted small" for="rememberMe">Remember me</label>
+                                </div>
+                                <button type="submit" class="btn btn-dark w-100 py-2 fw-bold">
+                                    <i class="fas fa-sign-in-alt me-1"></i> Sign In
+                                </button>
+                            </form>
+                        </div>
+
+                        <div class="tab-pane fade" id="register-panel" role="tabpanel">
+                            <form id="registerForm" onsubmit="handleRegister(event)">
+                                <div class="mb-3">
+                                    <label for="regName" class="form-label">Full Name</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="fas fa-user text-muted"></i></span>
+                                        <input type="text" class="form-control" id="regName" placeholder="John Doe" required>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="regEmail" class="form-label">Email Address</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="fas fa-envelope text-muted"></i></span>
+                                        <input type="email" class="form-control" id="regEmail" placeholder="name@example.com" required>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="regPassword" class="form-label">Password</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="fas fa-key text-muted"></i></span>
+                                        <input type="password" class="form-control" id="regPassword" placeholder="Create a strong password" required>
+                                    </div>
+                                </div>
+                                <div class="mb-4">
+                                    <label for="userRole" class="form-label">Account Type</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="fas fa-user-tag text-muted"></i></span>
+                                        <select class="form-select" id="userRole">
+                                            <option value="customer">Customer (Buyer)</option>
+                                            <option value="admin">Admin (Store Manager)</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-dark w-100 py-2 fw-bold">
+                                    <i class="fas fa-user-plus me-1"></i> Create Account
+                                </button>
+                            </form>
+                        </div>
+
+                    </div> 
+                </div> 
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-dark text-white text-center py-4 mt-5">
+        <div class="container">
+            <p class="mb-1">&copy; 2026 Velvet Vogue Clothing Store. All Rights Reserved.</p>
+            <small class="text-secondary d-block">Student Name: [Your Name] | Student ID: [Your ID]</small>
+            <small class="text-secondary">Unit 13: Web Design & Development | Assignment 1</small>
+        </div>
+    </footer>
+
+    <script>
+        // Handle Mock Login Activity
+        function handleLogin(event) {
+            event.preventDefault();
+            const email = document.getElementById('loginEmail').value;
+            
+            // Test Simulation for Admin vs Customer
+            if(email.includes('admin')) {
+                alert('Welcome Admin! Redirecting to Velvet Vogue Management Dashboard...');
+            } else {
+                alert('Login Successful! Welcome back to Velvet Vogue.');
+            }
+        }
+
+        // Handle Mock Registration Activity
+        function handleRegister(event) {
+            event.preventDefault();
+            const name = document.getElementById('regName').value;
+            const role = document.getElementById('userRole').value;
+            
+            alert(`Account successfully created for ${name} as a ${role.toUpperCase()}!`);
+        }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

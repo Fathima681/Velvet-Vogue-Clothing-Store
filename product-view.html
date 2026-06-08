@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Velvet Vogue - Product Details</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', sans-serif;
+        }
+        .product-display-img {
+            max-height: 550px;
+            object-fit: cover;
+            border-radius: 12px;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+        }
+        .size-radio-btn {
+            display: none;
+        }
+        .size-label {
+            display: inline-block;
+            width: 45px;
+            height: 45px;
+            line-height: 43px;
+            text-align: center;
+            border: 2px solid #dee2e6;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.2s;
+        }
+        .size-radio-btn:checked + .size-label {
+            background-color: #212529;
+            border-color: #212529;
+            color: white;
+        }
+        .quantity-control {
+            max-width: 130px;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="shop.html"><i class="fas fa-vest-patches me-2"></i>Velvet Vogue</a>
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link text-white" href="cart.html">
+                    <i class="fas fa-shopping-cart me-1"></i> Cart <span class="badge bg-danger rounded-pill" id="cartBadge">0</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="shop.html" class="text-decoration-none text-muted"><i class="fas fa-home me-1"></i>Shop</a></li>
+                <li class="breadcrumb-item text-muted" aria-current="page">Casualwear</li>
+                <li class="breadcrumb-item active fw-semibold text-dark" aria-current="page">Classic Casual Jacket</li>
+            </ol>
+        </nav>
+    </div>
+
+    <section class="container my-5">
+        <div class="row g-5">
+            
+            <div class="col-md-6 text-center">
+                <img src="https://i.pinimg.com/1200x/3e/06/2f/3e062f7dc47dd39618eae0404fd14bc5.jpg" 
+                     class="img-fluid product-display-img w-100" 
+                     id="mainProductImg" 
+                     alt="Classic Casual Jacket">
+            </div>
+
+            <div class="col-md-6">
+                <span class="badge bg-secondary mb-2 px-3 py-2 text-uppercase tracking-wider">Casualwear</span>
+                <h1 class="fw-bold mb-2 text-dark" id="productTitle">Classic Casual Jacket</h1>
+                
+                <div class="mb-3 text-warning">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                    <span class="text-muted small ms-2">(4.5 / 5.0 out of 48 customer reviews)</span>
+                </div>
+
+                <h3 class="text-danger fw-bold mb-4" id="productPrice">LKR 4,500.00</h3>
+                
+                <hr class="text-muted">
+
+                <p class="text-secondary leading-relaxed my-4">
+                    Elevate your everyday wardrobe with our premium Classic Casual Jacket. Tailored from highly breathable, premium-grade cotton fabric, it balances lightweight comfort with structural durability. Features a secure heavy-duty zip lining, classic collar aesthetic, and functional inner pockets designed for modern versatility.
+                </p>
+
+                <div class="mb-4">
+                    <label class="form-label fw-bold text-dark mb-2"><i class="fas fa-ruler-combined me-1 text-muted"></i> Select Size:</label>
+                    <div class="d-flex gap-2">
+                        <div>
+                            <input type="radio" name="sizeOption" id="sizeS" class="size-radio-btn" value="S" checked>
+                            <label for="sizeS" class="size-label">S</label>
+                        </div>
+                        <div>
+                            <input type="radio" name="sizeOption" id="sizeM" class="size-radio-btn" value="M">
+                            <label for="sizeM" class="size-label">M</label>
+                        </div>
+                        <div>
+                            <input type="radio" name="sizeOption" id="sizeL" class="size-radio-btn" value="L">
+                            <label for="sizeL" class="size-label">L</label>
+                        </div>
+                        <div>
+                            <input type="radio" name="sizeOption" id="sizeXL" class="size-radio-btn" value="XL">
+                            <label for="sizeXL" class="size-label">XL</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="d-flex flex-wrap align-items-center gap-3 mt-4">
+                    <div class="mb-0">
+                        <label for="prodQty" class="form-label fw-bold text-dark small d-block mb-2"><i class="fas fa-sort-amount-up-alt me-1 text-muted"></i> Qty:</label>
+                        <input type="number" class="form-control quantity-control py-2 text-center" id="prodQty" min="1" max="10" value="1">
+                    </div>
+                    
+                    <div class="flex-grow-1 align-self-end">
+                        <button class="btn btn-dark w-100 py-2.5 fw-bold" onclick="handleAddToCart()">
+                            <i class="fas fa-shopping-bag me-2"></i> Add To Cart
+                        </button>
+                    </div>
+                </div>
+
+                <div class="row mt-5 pt-3 g-2 border-top text-center text-muted small">
+                    <div class="col-4"><i class="fas fa-truck-moving text-success d-block mb-1 fs-5"></i> Islandwide Delivery</div>
+                    <div class="col-4"><i class="fas fa-undo-alt text-primary d-block mb-1 fs-5"></i> 7-Day Easy Returns</div>
+                    <div class="col-4"><i class="fas fa-shield-alt text-warning d-block mb-1 fs-5"></i> 100% Authentic Quality</div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-dark text-white text-center py-4 mt-5">
+        <div class="container">
+            <p class="mb-1">&copy; 2026 Velvet Vogue Clothing Store. All Rights Reserved.</p>
+            <small class="text-secondary d-block">Student Name: [Your Name] | Student ID: [Your ID]</small>
+            <small class="text-secondary">Unit 13: Web Design & Development | Assignment 1</small>
+        </div>
+    </footer>
+
+    <script>
+        function handleAddToCart() {
+            const title = document.getElementById('productTitle').innerText;
+            const price = document.getElementById('productPrice').innerText;
+            const quantity = document.getElementById('prodQty').value;
+            const selectedSize = document.querySelector('input[name="sizeOption"]:checked').value;
+
+            // Simple cart simulations logic for front-end demonstration 
+            const badge = document.getElementById('cartBadge');
+            badge.innerText = parseInt(badge.innerText) + parseInt(quantity);
+
+            // Alert dispatch for assignment functional criteria
+            alert(`Added to Simulation Cart:\n\n🛍️ Item: ${title}\n📏 Size: ${selectedSize}\n🔢 Qty: ${quantity}\n💰 Price Each: ${price}`);
+        }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
